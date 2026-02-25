@@ -254,7 +254,7 @@
 
   data.forEach(cat => {
     container.insertAdjacentHTML("beforeend", `
-      <a href="research-category.html?slug=${cat.slug}"
+      <a href="NavBar-Pages/research-category.html?slug=${cat.slug}"
          class="dropdown-item">
         ${cat.title}
       </a>
@@ -283,7 +283,7 @@ async function loadMobileOverviewCategories() {
 
   data.forEach(category => {
     overviewMenu.insertAdjacentHTML("beforeend", `
-      <a href="research-category.html?slug=${category.slug}"
+      <a href="NavBar-Pages/research-category.html?slug=${category.slug}"
          class="block py-1 text-gray-700 hover:text-purple-600">
         ${category.title}
       </a>
