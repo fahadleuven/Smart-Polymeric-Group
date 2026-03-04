@@ -179,7 +179,7 @@
 
   <div id="publications"></div>
 
-
+<div id="footer"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/js/supabase.js"></script>
 
@@ -230,12 +230,16 @@
       String(pub.year).includes(query)
     );
 
-    renderPublications(filtered);
+    renderPublications(filtered.sort((a, b) => b.year - a.year));
   }
 
   document.getElementById("searchBtn").addEventListener("click", filterPublications);
 
-  document.getElementById("searchInput").addEventListener("input", filterPublications);
+   document.getElementById("searchInput").addEventListener("input", function () {
+  if (this.value.trim() === "") {
+    loadPublications();
+  }
+});
 
   loadPublications();
 
@@ -293,6 +297,14 @@ async function loadMobileOverviewCategories() {
 document.addEventListener("DOMContentLoaded", () => {
   loadMobileOverviewCategories();
 });
+
+
+/* //fetch footer and insert into page */
+fetch('components/footer.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('footer').innerHTML = data;
+  });
   </script>
 <script src="/js/script.js"></script>
   

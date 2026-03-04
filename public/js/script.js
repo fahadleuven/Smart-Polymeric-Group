@@ -270,7 +270,7 @@ function initSlider(container) {
 //duble click to open modal
 
 
-document.addEventListener("dblclick", function (e) {
+document.addEventListener("click", function (e) {
   if (!e.target.classList.contains("fullscreen-enabled")) return;
  //if (!e.target.tagName || e.target.tagName !== "IMG") return;
   const container = document.createElement("div");
@@ -425,12 +425,7 @@ overviewBtn.addEventListener("dblclick", () => {
  ************************/
 
 
-//fetch footer and insert into page
-fetch('components/footer.html')
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('footer').innerHTML = data;
-  });
+
 
 
 

@@ -235,7 +235,7 @@
   const { data, error } = await supabaseClient
     .from("home_slider")
     .select("file_name, img_url, media_type")
-    .order("id", { ascending: true });
+    .order("id", { ascending: false });
 
   if (error) {
     console.error("DB error:", error);
@@ -338,7 +338,7 @@ function createNewsCard(news) {
   card.className = "news-card bg-white rounded-xl p-12 shadow-2xl";
 
   card.innerHTML = `
-    <div class="flex justify-between mb-3">
+    <div class="flex justify-between mb-3 ">
       <span class="px-8 py-3 text-xl bg-emerald-300/20 text-emerald-400 rounded-full">
         ${news.category}
       </span>
@@ -348,7 +348,11 @@ function createNewsCard(news) {
     </div>
     <h2 class="text-4xl font-bold text-gray-800 mb-8">${news.title}</h2>
     <p class="text-gray-600">${news.summary}</p>
-    <p class="text-purple-600 font-medium mb-3">${news.author}</p>
+    
+    ${news.author ? `<p class="text-purple-600 font-medium mb-3">${news.author}</p>` : ""}  
+    <p class="mt-6">
+      ${news.link_url ? `<a href="${news.link_url}" target="_blank" class="text-blue-600 font-semibold hover:underline">Read Full Article >></a>` : ""}
+    </p>
   `;
 
   return card;
@@ -459,7 +463,12 @@ document.addEventListener("DOMContentLoaded", () => {
   loadMobileOverviewCategories();
 });
   
-
+/* //fetch footer and insert into page */
+fetch('components/footer.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('footer').innerHTML = data;
+  });
 
 
 

@@ -204,7 +204,7 @@
 
 
 
-
+<div id="footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/js/supabase.js"></script>
@@ -279,6 +279,9 @@ async function loadLabOverview() {
   container.innerHTML = "";
 
   data.forEach(item => {
+    if (item.image_url) {
+     
+    
     container.insertAdjacentHTML("beforeend", `
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
         <div>
@@ -289,12 +292,28 @@ async function loadLabOverview() {
             ${item.description}
           </p>
         </div>
-
+       
         <img src="${item.image_url}"
              class="fullscreen-enabled rounded-xl shadow-lg w-full object-contain cursor-zoom-in" title="Double click to view fullscreen">
+
       </div>
     `);
-  });
+  }
+  else {
+    container.insertAdjacentHTML("beforeend", `
+      <div class="mb-20">
+        <h2 class="text-2xl font-semibold text-purple-700 mb-4">
+          ${item.title}
+        </h2>
+        <p class="text-gray-600 leading-relaxed">
+          ${item.description}
+        </p>
+      </div>
+    `);
+      
+    }}
+  
+  );
 }
 
 
@@ -319,7 +338,7 @@ async function loadFacilities() {
     container.insertAdjacentHTML("beforeend", `
       <div class="bg-purple-50 p-6 rounded-xl text-center">
         <img src="${item.image_url}"
-             class="fullscreen-enabled w-full h-40 object-contain rounded-lg mb-4 cursor-zoom-in" title="Double click to view fullscreen">
+             class="fullscreen-enabled w-full h-40 object-contain rounded-lg mb-4 cursor-zoom-in" title="Click to view fullscreen">
 
         <h3 class="text-lg font-semibold mb-2">
           ${item.title}
@@ -343,6 +362,13 @@ document.addEventListener("DOMContentLoaded", async () => {
  
 });
 
+
+/* //fetch footer and insert into page */
+fetch('../components/footer.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('footer').innerHTML = data;
+  });
 
 </script>
    <script src="/js/script.js"></script>

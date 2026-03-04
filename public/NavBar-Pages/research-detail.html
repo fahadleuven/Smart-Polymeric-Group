@@ -205,6 +205,8 @@
 </div>
 </div>
 
+<div id="footer"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
 <script src="/js/supabase.js"></script>
@@ -453,7 +455,7 @@ async function loadResearchSlider(projectId) {
 
     const img = document.createElement("img");
     img.src = row.img_url;
-    img.className = "slider-img fullscreen-enabled";
+    img.className = "slider-img fullscreen-enabled cursor-zoom-in";
     slide.appendChild(img);
 
     if (row.caption) {
@@ -558,6 +560,13 @@ document.addEventListener("DOMContentLoaded", () => {
   loadMobileOverviewCategories();
 });
 
+
+/* //fetch footer and insert into page */
+fetch('../components/footer.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('footer').innerHTML = data;
+  });
 
 </script>
 <script src="/js/script.js"></script>
